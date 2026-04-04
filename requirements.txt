@@ -1,0 +1,24 @@
+# Web Server & API
+fastapi==0.110.0
+uvicorn==0.29.0
+python-multipart==0.0.9
+pydantic==2.6.4
+
+# Environment & Networking
+python-dotenv==1.0.1
+requests
+
+# Vector Store & Search
+faiss-cpu==1.8.0
+numpy==1.26.4
+
+# Embeddings & Machine Learning
+sentence-transformers==2.6.1
+torch==2.2.2
+
+# Document Parsing 
+Pillow==10.3.0
+
+
+pymupdf4llm
+rank_bm25
