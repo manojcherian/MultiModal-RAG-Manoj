@@ -39,8 +39,67 @@ In such a case, the system should retrieve:
 These retrieved elements can then be synthesized into a precise response that helps the maintenance team understand the reason for breakdown and locate the correct corrective reference quickly. By reducing the effort required to search through multiple equipment manuals and by directing the user to the exact relevant document section, the system improves troubleshooting speed, enhances confidence in maintenance decisions, and supports safer and more efficient plant operations.
 
 ---
+## 2. Technology Choices
+2.1 Parser
+Chosen: PyMuPDF (fitz) + pymupdf4llm
+Why:
+Supports page-wise PDF parsing.
+Extracts text blocks, images, and page renderings.
+Works well for mixed-format engineering PDFs.
+Useful for detecting scanned pages and extracting embedded diagrams.
 
-## 2. Architecture Overview
+2.2 Vision Processing / VLM (Groq)
+Chosen: API-based vision model (used to summarize diagrams, scanned pages, and image content)
+Why:
+Manufacturing PDFs contain non-text content that is operationally important.
+A VLM can convert schematics, charts, and scanned tables into searchable textual summaries.
+Enables cross-modal retrieval by turning diagrams into indexed content.
+
+2.3 Embedding Model
+Chosen: SentenceTransformer("ibm-granite/granite-embedding-30m-english")
+Why:
+Lightweight and practical for local CPU inference.
+Suitable for building embeddings without requiring a GPU-heavy environment.
+Keeps ingestion and query embedding local, reducing external dependency for retrieval.
+
+2.4 Dense Vector Store
+Chosen: FAISS HNSW
+Why:
+Efficient approximate nearest-neighbor search.
+Good performance for semantic retrieval on embedded chunks.
+Suitable for local deployment and fast query-time similarity search.
+
+2.5 Sparse Retrieval
+Chosen: BM25
+Why:
+Handles exact lexical matching better than dense retrieval.
+Important for part numbers, fault codes, model names, parameter IDs, and exact technical keywords.
+Complements FAISS in industrial documentation.
+
+2.6 Hybrid Retrieval Logic
+Chosen: Reciprocal Rank Fusion (RRF) + chunk-type boosting
+Why:
+Combines semantic and keyword retrieval.
+Improves relevance for both natural language questions and exact technical lookups.
+Allows table chunks and image-summary chunks to be boosted for specific query intents.
+
+2.7 API Layer
+Chosen: FastAPI
+Why:
+Easy to build and test REST endpoints.
+Automatic Swagger UI support via /docs.
+Well suited for serving health, ingestion, and query endpoints.
+
+2.8 LLM for Final Response Generation
+Chosen: API-based chat model with failover support
+Why:
+Provides grounded response generation from retrieved context.
+Allows flexible model fallback when one model is unavailable.
+Avoids local deployment burden for large generative models.
+
+
+
+## Architecture Overview
 
 The system utilizes a hybrid local/cloud architecture designed for manufacturing environments. Document parsing, hybrid indexing (FAISS + BM25), and vector storage run locally, while heavy LLM/VLM reasoning is offloaded to APIs.
 
