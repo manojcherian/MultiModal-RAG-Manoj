@@ -134,6 +134,19 @@ https://github.com/manojcherian/MultiModal-RAG-Manoj/blob/main/Screenshot4.jpg
 https://github.com/manojcherian/MultiModal-RAG-Manoj/blob/main/Screenshot5.jpg
 https://github.com/manojcherian/MultiModal-RAG-Manoj/blob/main/Screenshot6.jpg
 
+## 5. Limitations & Future Work
+Limitations
+1) If a scanned page is blurry, low-resolution, or poorly aligned, text extraction and image summarization quality may degrade.
+2) Complex engineering schematics may contain fine-grained symbols and relationships that are not fully captured in a short image summary.
+3) If chunking splits a table incorrectly or a diagram summary is incomplete, the final answer may miss important context.
+4) Final generation and some image understanding depend on external APIs, which may introduce availability, latency, or rate-limit issues.
+Future Work
+1) Add true append/update support so that new PDFs can be indexed without rebuilding the entire corpus.
+2) Improve the vision pre-filter to remove redundant logos, tiny icons, and non-technical images more reliably.
+3) Introduce stronger OCR support for noisy or low-quality scanned pages.
+4) Add a lightweight front-end for upload, querying, and source inspection rather than relying only on Swagger UI.
+
+
 ## Architecture Overview
 
 The system utilizes a hybrid local/cloud architecture designed for manufacturing environments. Document parsing, hybrid indexing (FAISS + BM25), and vector storage run locally, while heavy LLM/VLM reasoning is offloaded to APIs.
