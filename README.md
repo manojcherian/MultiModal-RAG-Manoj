@@ -116,6 +116,7 @@ example: https://super-duper-space-guide-g4pw76jx56xpf9gwq-8000.app.github.dev/d
 ## 4. API Documentation
 4.1 GET /health
 Returns system status, index readiness, number of indexed chunks, index size, and uptime.
+
 4.2 POST /ingest
 Uploads a PDF document and starts background parsing + indexing.
 Notes
@@ -141,6 +142,7 @@ Limitations
 2) Complex engineering schematics may contain fine-grained symbols and relationships that are not fully captured in a short image summary.
 3) If chunking splits a table incorrectly or a diagram summary is incomplete, the final answer may miss important context.
 4) Final generation and some image understanding depend on external APIs, which may introduce availability, latency, or rate-limit issues.
+
 Future Work
 1) Add true append/update support so that new PDFs can be indexed without rebuilding the entire corpus.
 2) Improve the vision pre-filter to remove redundant logos, tiny icons, and non-technical images more reliably.
