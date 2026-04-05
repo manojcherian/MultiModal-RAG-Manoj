@@ -99,18 +99,19 @@ Avoids local deployment burden for large generative models.
 
 ## 3. Setup Instructions
 
-git init
-git clone https://github.com/manojcherian/MultiModal-RAG-Manoj.git
-pip install -r requirements.txt
-uvicorn main:app --reload
-Open Swagger UI:Once the server starts, open:
+1) git init
+2) git clone https://github.com/manojcherian/MultiModal-RAG-Manoj.git
+3) pip install -r requirements.txt
+4) uvicorn main:app --reload
+5) Open Swagger UI:Once the server starts, open:
 example: https://super-duper-space-guide-g4pw76jx56xpf9gwq-8000.app.github.dev/docs
-Ingest a Multimodal PDF:Use Swagger UI to upload a PDF through the /ingest endpoint
-Query the System: After ingestion completes, use the /query endpoint with a question such as:
+6) Ingest a Multimodal PDF:Use Swagger UI to upload a PDF through the /ingest endpoint
+7) Query the System: After ingestion completes, use the /query endpoint with a question such as:
 {
   "question": "What in the payload and reach of robot?",
   "top_k": 5
 }
+8) See the server response
 
 ## 4. API Documentation
 4.1 GET /health
