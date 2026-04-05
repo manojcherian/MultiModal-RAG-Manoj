@@ -150,7 +150,7 @@ Future Work
 4) Add a lightweight front-end for upload, querying, and source inspection rather than relying only on Swagger UI.
 
 
-## Architecture Overview
+## 6. Architecture Overview
 
 The system utilizes a hybrid local/cloud architecture designed for manufacturing environments. Document parsing, hybrid indexing (FAISS + BM25), and vector storage run locally, while heavy LLM/VLM reasoning is offloaded to APIs.
 
