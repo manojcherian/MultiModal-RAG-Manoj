@@ -115,6 +115,24 @@ Query the System: After ingestion completes, use the /query endpoint with a ques
 ## 4. API Documentation
 4.1 GET /health
 Returns system status, index readiness, number of indexed chunks, index size, and uptime.
+4.2 POST /ingest
+Uploads a PDF document and starts background parsing + indexing.
+Notes
+Only PDF files are accepted.
+The parser extracts text, tables, and images/scanned pages.
+Indexed content is reloaded into memory after processing.
+
+4.3 POST /query
+Accepts a question and retrieves the most relevant chunks from the indexed documents.
+question-string-Natural language query
+top_k-integer-Number of chunks to retrieve
+
+https://github.com/manojcherian/MultiModal-RAG-Manoj/blob/main/Screenshot1.jpg
+https://github.com/manojcherian/MultiModal-RAG-Manoj/blob/main/Screenshot2.jpg
+https://github.com/manojcherian/MultiModal-RAG-Manoj/blob/main/Screenshot3.jpg
+https://github.com/manojcherian/MultiModal-RAG-Manoj/blob/main/Screenshot4.jpg
+https://github.com/manojcherian/MultiModal-RAG-Manoj/blob/main/Screenshot5.jpg
+https://github.com/manojcherian/MultiModal-RAG-Manoj/blob/main/Screenshot6.jpg
 
 ## Architecture Overview
 
