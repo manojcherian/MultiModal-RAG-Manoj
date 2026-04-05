@@ -78,5 +78,3 @@ graph TD
         Q --> R[Grounded Answer + Citations]
     end
 
-
-## 3. Architecture Overview
